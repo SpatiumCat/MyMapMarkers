@@ -3,10 +3,13 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+
+
 android {
     namespace 'ru.netology.mymapmarkers'
     compileSdk 34
 
+    buildFeatures.buildConfig true
     defaultConfig {
         applicationId "ru.netology.mymapmarkers"
         minSdk 24
@@ -15,6 +18,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "MAPKIT_API_KEY", "\"${mapkitApiKey}\""
     }
 
     buildTypes {
