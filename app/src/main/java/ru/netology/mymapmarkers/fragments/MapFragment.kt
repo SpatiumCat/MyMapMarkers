@@ -19,7 +19,7 @@ class MapFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         MapKitFactory.initialize(requireActivity())
-        val view = inflater.inflate(R.layout.map_fragment, container, false)
+        val view = inflater.inflate(R.layout.fragment_map, container, false)
         mapView = view.findViewById<MapView>(R.id.map)
 
         return view

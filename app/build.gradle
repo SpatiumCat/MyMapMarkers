@@ -10,6 +10,7 @@ android {
     compileSdk 34
 
     buildFeatures.buildConfig true
+    buildFeatures.viewBinding true
     defaultConfig {
         applicationId "ru.netology.mymapmarkers"
         minSdk 24
