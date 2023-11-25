@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:id="@+id/listRecyclerView"
+        android:backgroundTint="@color/background"
         tools:listitem="@layout/card_marker"/>
 
 </FrameLayout>

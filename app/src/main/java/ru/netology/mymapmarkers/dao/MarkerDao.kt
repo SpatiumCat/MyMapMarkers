@@ -1,5 +1,6 @@
 package ru.netology.mymapmarkers.dao
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
@@ -13,7 +14,7 @@ import ru.netology.mymapmarkers.entity.MarkerEntity
 interface MarkerDao {
 
     @Query("SELECT * FROM MarkerEntity ORDER BY name DESC")
-    suspend fun getAll(): MutableLiveData<List<MarkerEntity>>
+    fun getAll(): LiveData<List<MarkerEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(marker: MarkerEntity)

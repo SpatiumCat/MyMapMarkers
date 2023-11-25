@@ -8,10 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.netology.mymapmarkers.databinding.CardMarkerBinding
 import ru.netology.mymapmarkers.dto.Marker
 
-class MarkerAdapter : ListAdapter<Marker, MarkerViewHolder>(MarkerDiffCallback()) {
+interface OnInteractionListener {
+    fun goToMarker(id: Long)
+}
+
+class MarkerAdapter(
+    private val onInteractionListener: OnInteractionListener,
+) : ListAdapter<Marker, MarkerViewHolder>(MarkerDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarkerViewHolder {
         val binding = CardMarkerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MarkerViewHolder(binding)
+        return MarkerViewHolder(binding, onInteractionListener)
     }
 
     override fun onBindViewHolder(holder: MarkerViewHolder, position: Int) {
@@ -21,13 +27,18 @@ class MarkerAdapter : ListAdapter<Marker, MarkerViewHolder>(MarkerDiffCallback()
 }
 
 class MarkerViewHolder(
-    private val binding: CardMarkerBinding
+    private val binding: CardMarkerBinding,
+    private val onInteractionListener: OnInteractionListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(marker: Marker) {
         binding.apply {
             markerName.text = marker.name
             markerDescription.text = marker.description
             markerCoordinates.text = "${marker.latitude}, ${marker.longitude}"
+
+            root.setOnClickListener {
+                onInteractionListener.goToMarker(marker.id)
+            }
         }
     }
 }

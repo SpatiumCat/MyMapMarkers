@@ -1,12 +1,15 @@
 package ru.netology.mymapmarkers.db
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 import ru.netology.mymapmarkers.dao.MarkerDao
+import ru.netology.mymapmarkers.entity.MarkerEntity
 
+@Database(entities = [MarkerEntity::class], version = 2)
 abstract class AppDb : RoomDatabase() {
     abstract fun markerDao(): MarkerDao
 
