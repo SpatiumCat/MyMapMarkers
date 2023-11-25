@@ -10,6 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.findNavController
+import ru.netology.mymapmarkers.R
 import ru.netology.mymapmarkers.adapter.MarkerAdapter
 import ru.netology.mymapmarkers.adapter.OnInteractionListener
 import ru.netology.mymapmarkers.databinding.FragmentFeedBinding
@@ -28,6 +30,7 @@ class FeedFragment : Fragment() {
         val adapter = MarkerAdapter(object : OnInteractionListener {
             override fun goToMarker(id: Long) {
                 setFragmentResult("goToMarker", bundleOf("myMarker" to id))
+                binding.root.findNavController().navigate(R.id.action_feedFragment_to_mapFragment)
             }
         })
 
