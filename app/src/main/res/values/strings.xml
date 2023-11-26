@@ -4,4 +4,7 @@
     <string name="marker_description">Description:</string>
     <string name="marker_coordinates">Coordinates:</string>
     <string name="card_marker_set_coordinates">%1$f, %2$f</string>
+    <string name="marker_menu_show_description">Show description</string>
+    <string name="marker_menu_edit">Edit</string>
+    <string name="marker_menu_remove">Remove</string>
 </resources>

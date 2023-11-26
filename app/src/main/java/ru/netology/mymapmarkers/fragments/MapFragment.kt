@@ -4,9 +4,12 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.core.content.ContextCompat
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
@@ -37,18 +40,34 @@ class MapFragment: Fragment() {
         mapView = binding.mapView
         val pinsCollection = binding.mapView.map.mapObjects.addCollection()
         val imageProvider = ImageProvider.fromBitmap(createBitmapFromVector(R.drawable.map_marker_24))
+        val markerMenu = PopupMenu(binding.root.context, binding.mapView)
 
         markerViewModel.markerList.observe(viewLifecycleOwner){
             it.forEach { marker ->
                 pinsCollection.addPlacemark().apply {
                     geometry = Point(marker.latitude, marker.longitude)
                     setIcon(imageProvider)
+                    setText(marker.description)
+                    addTapListener { placemarkerMapObject, point ->
+                        markerMenu.apply {
+                            inflate(R.menu.marker_menu)
+                            setOnMenuItemClickListener { menuItem ->
+                                when(menuItem.itemId) {
+                                    R.id.menuDescription -> {true}
+                                    R.id.menuEdit -> true
+                                    R.id.menuRemove -> true
+                                    else -> false
+                                }
+                            }
+                        }.show()
+                        true
+                    }
                 }
             }
         }
 
         setFragmentResultListener("goToMarker") { key, bundle ->
-            val marker = markerViewModel.markerList.value?.find { it.id == bundle.getLong(key) } ?: return@setFragmentResultListener
+            val marker = markerViewModel.markerList.value?.find { it.id == bundle.getLong("myMarker") } ?: return@setFragmentResultListener
             mapView.mapWindow.map.move(CameraPosition(
                 Point(marker.latitude, marker.longitude),
                 17.0f,

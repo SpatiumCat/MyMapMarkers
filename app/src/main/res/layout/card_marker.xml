@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toTopOf="@+id/name" />
 
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/menuDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -61,9 +61,9 @@
                 tools:text="TextView"
                 android:textColor="@color/primary_text"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/description"
-                app:layout_constraintStart_toEndOf="@+id/description"
-                app:layout_constraintTop_toTopOf="@+id/description" />
+                app:layout_constraintBottom_toBottomOf="@+id/menuDescription"
+                app:layout_constraintStart_toEndOf="@+id/menuDescription"
+                app:layout_constraintTop_toTopOf="@+id/menuDescription" />
 
             <TextView
                 android:id="@+id/coordinates"
@@ -73,7 +73,7 @@
                 android:text="@string/marker_coordinates"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/description" />
+                app:layout_constraintTop_toBottomOf="@+id/menuDescription" />
 
             <TextView
                 android:id="@+id/markerCoordinates"
