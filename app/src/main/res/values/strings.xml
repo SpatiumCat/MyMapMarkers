@@ -3,4 +3,5 @@
     <string name="marker_name">Name:</string>
     <string name="marker_description">Description:</string>
     <string name="marker_coordinates">Coordinates:</string>
+    <string name="card_marker_set_coordinates">%1$f, %2$f</string>
 </resources>
