@@ -27,10 +27,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Show description"
+            android:layout_marginStart="28dp"
+            android:text="@string/marker_menu_show_description"
             android:textAlignment="viewStart"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
 
     </LinearLayout>
@@ -45,15 +45,15 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/marker_menu_description_24" />
+            android:src="@drawable/marker_menu_edit_24" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Edit marker"
+            android:layout_marginStart="28dp"
+            android:text="@string/marker_menu_edit"
             android:textAlignment="viewStart"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
 
     </LinearLayout>
@@ -68,15 +68,15 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/marker_menu_description_24" />
+            android:src="@drawable/marker_menu_remove_24" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Remove marker"
+            android:layout_marginStart="28dp"
+            android:text="@string/marker_menu_remove"
             android:textAlignment="viewStart"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
 
     </LinearLayout>

@@ -28,4 +28,12 @@ class MarkerRepositoryImpl(
     override suspend fun delete(id: Long) {
         markerDao.removeById(id)
     }
+
+    override suspend fun updateDescription(id: Long, description: String) {
+        markerDao.updateDescriptionById(id, description)
+    }
+
+    override suspend fun updateMarker(id: Long, name: String, description: String) {
+        markerDao.updateMarker(id, name, description)
+    }
 }

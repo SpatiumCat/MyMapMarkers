@@ -5,6 +5,10 @@
     <string name="marker_coordinates">Coordinates:</string>
     <string name="card_marker_set_coordinates">%1$f, %2$f</string>
     <string name="marker_menu_show_description">Show description</string>
-    <string name="marker_menu_edit">Edit</string>
-    <string name="marker_menu_remove">Remove</string>
+    <string name="marker_menu_edit">Edit marker</string>
+    <string name="marker_menu_remove">Remove marker</string>
+    <string name="edit_dialog_name_hint">Name</string>
+    <string name="edit_dialog_hint_description">Description</string>
+    <string name="edit_dialog_button_text">Save</string>
+    <string name="edit_dialog_heading">Edit</string>
 </resources>

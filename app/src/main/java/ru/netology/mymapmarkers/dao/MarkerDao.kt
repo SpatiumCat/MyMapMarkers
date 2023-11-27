@@ -28,6 +28,9 @@ interface MarkerDao {
     @Query("UPDATE MarkerEntity SET name = :name WHERE id = :id")
     suspend fun updateNameById(id: Long, name: String)
 
+    @Query("UPDATE MarkerEntity SET name = :name, description = :description WHERE id = :id")
+    suspend fun updateMarker(id: Long, name: String, description: String)
+
     @Query("DELETE FROM MarkerEntity WHERE id = :id")
     suspend fun removeById(id: Long)
 

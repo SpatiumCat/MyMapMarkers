@@ -9,4 +9,6 @@ interface MarkerRepostitory {
     suspend fun save(marker: Marker)
     suspend fun save(markers: List<Marker>)
     suspend fun delete(id: Long)
+    suspend fun updateDescription(id: Long, description: String)
+    suspend fun updateMarker(id: Long, name: String, description: String)
 }
