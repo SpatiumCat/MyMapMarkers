@@ -23,9 +23,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.CameraPosition
+import com.yandex.mapkit.map.InputListener
+import com.yandex.mapkit.map.Map
 import com.yandex.mapkit.map.MapObject
 import com.yandex.mapkit.map.MapObjectCollection
 import com.yandex.mapkit.map.MapObjectTapListener
+import com.yandex.mapkit.map.PlacemarkMapObject
 import com.yandex.mapkit.mapview.MapView
 import com.yandex.runtime.image.ImageProvider
 import ru.netology.mymapmarkers.R
@@ -38,6 +41,13 @@ class MapFragment : Fragment() {
     private lateinit var mapView: MapView
     private val markerViewModel: MarkerViewModel by viewModels(::requireParentFragment)
     private lateinit var placemarkTapListener: MapObjectTapListener
+    private val inputListener = object : InputListener {
+        override fun onMapTap(p0: Map, p1: Point) {}
+
+        override fun onMapLongTap(p0: Map, point: Point) {
+            showNewMarkerDialog(point)
+        }
+    }
 
 
     override fun onCreateView(
@@ -49,6 +59,7 @@ class MapFragment : Fragment() {
         val binding = FragmentMapBinding.inflate(inflater, container, false)
 
         mapView = binding.mapView
+        mapView.mapWindow.map.addInputListener(inputListener)
         val pinsCollection = binding.mapView.mapWindow.map.mapObjects.addCollection()
         val imageProvider =
             ImageProvider.fromBitmap(createBitmapFromVector(R.drawable.map_marker_24))
@@ -182,6 +193,47 @@ class MapFragment : Fragment() {
                 description.text.toString()
             )
 
+        }
+
+        dialog.show()
+        dialog.window?.let { window ->
+            window.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            window.attributes.windowAnimations = R.style.DialogAnimation
+            window.setGravity(Gravity.BOTTOM)
+        }
+    }
+
+    private fun showNewMarkerDialog(
+        point: Point,
+    ) {
+        val dialog = Dialog(requireActivity())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.layout_bottomsheet_dialog_new_marker)
+
+
+        val name = dialog.findViewById<EditText>(R.id.newMarkerName)
+        val description = dialog.findViewById<EditText>(R.id.newMarkerDescription)
+        val save = dialog.findViewById<Button>(R.id.newMarkerSaveButton)
+
+        save.setOnClickListener {
+            if (name.text.isBlank()) {
+                Toast.makeText(requireActivity(), "Enter the name", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            dialog.dismiss()
+            markerViewModel.save(
+                Marker(
+                    id = 0,
+                    name = name.text.toString(),
+                    description = description.text.toString(),
+                    latitude = point.latitude,
+                    longitude = point.longitude,
+                    )
+            )
         }
 
         dialog.show()

@@ -11,4 +11,5 @@
     <string name="edit_dialog_hint_description">Description</string>
     <string name="edit_dialog_button_text">Save</string>
     <string name="edit_dialog_heading">Edit</string>
+    <string name="dialog_new_marker_heading">New Marker</string>
 </resources>
