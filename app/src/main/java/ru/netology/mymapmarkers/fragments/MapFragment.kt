@@ -40,9 +40,9 @@ class MapFragment : Fragment() {
 
     private lateinit var mapView: MapView
     private val markerViewModel: MarkerViewModel by viewModels(::requireParentFragment)
-    private lateinit var placemarkTapListener: MapObjectTapListener
+    private var placemarkTapListener = MapObjectTapListener {_,_ ->true}
     private val inputListener = object : InputListener {
-        override fun onMapTap(p0: Map, p1: Point) {}
+        override fun onMapTap(p0: Map, p1: Point) = Unit
 
         override fun onMapLongTap(p0: Map, point: Point) {
             showNewMarkerDialog(point)
@@ -60,10 +60,9 @@ class MapFragment : Fragment() {
 
         mapView = binding.mapView
         mapView.mapWindow.map.addInputListener(inputListener)
-        val pinsCollection = binding.mapView.mapWindow.map.mapObjects.addCollection()
+        val pinsCollection = mapView.mapWindow.map.mapObjects.addCollection()
         val imageProvider =
             ImageProvider.fromBitmap(createBitmapFromVector(R.drawable.map_marker_24))
-
         markerViewModel.markerList.observe(viewLifecycleOwner) {
             it.forEach { marker ->
                 pinsCollection.addPlacemark().apply {
@@ -74,8 +73,7 @@ class MapFragment : Fragment() {
                         showMarkerDialog(placemarkerMapObject, marker, pinsCollection)
                         true
                     }
-                    addTapListener(placemarkTapListener)
-                }
+                }.addTapListener(placemarkTapListener)
             }
         }
 
