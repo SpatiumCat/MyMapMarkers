@@ -27,15 +27,7 @@ class MarkerViewModel(application: Application) : AndroidViewModel(application) 
     private val edited = MutableLiveData(emptyMarker)
 
     init {
-        viewModelScope.launch {
-            repository.save(
-                listOf(
-                    Marker(1L, "Marker1", "First marker", 59.935493, 30.327392),
-                    Marker(2L, "Marker2", "Second Marker", 59.938185, 30.32808),
-                )
-            )
 
-        }
     }
     fun save(marker: Marker) {
         viewModelScope.launch {

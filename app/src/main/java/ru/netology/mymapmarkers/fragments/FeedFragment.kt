@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResult
@@ -34,7 +35,17 @@ class FeedFragment : Fragment() {
             }
         })
 
-        binding.listRecyclerView.adapter = adapter
+        with(binding) {
+            listRecyclerView.adapter = adapter
+            listRecyclerView.isVisible = (markerViewModel.markerList.value?.isNotEmpty() ?: false)
+            emptyList.isVisible = markerViewModel.markerList.value?.isEmpty() ?: true
+            toMapButton.isVisible = markerViewModel.markerList.value?.isEmpty() ?: true
+
+        }
+        binding.toMapButton.setOnClickListener {
+            binding.root.findNavController().navigate(R.id.action_feedFragment_to_mapFragment)
+        }
+
 
         markerViewModel.markerList.observe(requireActivity()) {
             adapter.submitList(it)

@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
@@ -89,6 +90,9 @@ class MapFragment : Fragment() {
                     30.0f
                 )
             )
+        }
+        binding.toListButton.setOnClickListener {
+            binding.root.findNavController().navigate(R.id.action_mapFragment_to_feedFragment)
         }
 
         return binding.root

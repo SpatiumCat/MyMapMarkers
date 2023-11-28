@@ -12,4 +12,7 @@
     <string name="edit_dialog_button_text">Save</string>
     <string name="edit_dialog_heading">Edit</string>
     <string name="dialog_new_marker_heading">New Marker</string>
+    <string name="map_button_text">MyMarkers</string>
+    <string name="feed_nothing_text">Nothing here</string>
+    <string name="feed_button_text">Map</string>
 </resources>
